@@ -36,6 +36,9 @@ public class Blackjack {
     int cardHeight = 154;
     Image hiddenCardImage;
     ArrayList<Card> deck;
+    ArrayList<Card> dealerHand;
+    int dealerHandValue = 0;
+
     JFrame frame = new JFrame("Blackjack Game");
 
     //player's hand
@@ -111,7 +114,7 @@ public class Blackjack {
         Card drawnCard1 = deck.remove(0);
         playerHand.add(drawnCard1);
         playerHandValue += drawnCard1.getValue();
-        Card drawnCard2 = deck.remove(1);
+        Card drawnCard2 = deck.remove(0);
         playerHand.add(drawnCard2);
         playerHandValue += drawnCard2.getValue();
         System.out.println("=============================");
@@ -121,6 +124,20 @@ public class Blackjack {
         System.out.println("Player hand: " + playerHand);
         System.out.println("Player hand value: " + playerHandValue);
 
+        //draw cards for the dealer
+        dealerHand = new ArrayList<Card>();
+        Card dealerCard1 = deck.remove(0);
+        dealerHand.add(dealerCard1);
+        dealerHandValue += dealerCard1.getValue();
+        Card dealerCard2 = deck.remove(0);
+        dealerHand.add(dealerCard2);
+        dealerHandValue += dealerCard2.getValue();
+        System.out.println("=============================");
+        System.out.println("Drawing cards: ");
+        System.out.println("Deck: " + deck);
+        System.out.println("Deck size: " + deck.size());
+        System.out.println("Dealer hand: " + dealerHand);
+        System.out.println("Dealer hand value: " + dealerHandValue);
     }
 
 }
