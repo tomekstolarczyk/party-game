@@ -19,6 +19,17 @@ public class Blackjack {
         public String toString() {
             return value + "-" + type;
         }
+
+        public int getValue() {
+
+            if (value == "J" || value == "Q" || value == "K") {
+                return 10;
+            } else if (value == "A") {
+                return 11; //wartosc asa na poczatku
+            } else {
+                return Integer.parseInt(value);
+            }
+        }
     }
 
     int cardWidth = 110;
@@ -26,6 +37,10 @@ public class Blackjack {
     Image hiddenCardImage;
     ArrayList<Card> deck;
     JFrame frame = new JFrame("Blackjack Game");
+
+    //player's hand
+    ArrayList<Card> playerHand;
+    int playerHandValue = 0;
 
     JPanel panel = new JPanel() {
         @Override
@@ -42,6 +57,7 @@ public class Blackjack {
 
         buildDeck();
         shuffleDeck();
+        drawCards();
 
         hiddenCardImage = new ImageIcon(getClass().getResource("./cards/BACK.png")).getImage();
 
@@ -51,8 +67,6 @@ public class Blackjack {
         panel.setLayout(new BorderLayout());
         panel.setBackground(new Color(53,101,77));
         frame.add(panel);
-
-
 
     }
 
@@ -89,4 +103,24 @@ public class Blackjack {
         System.out.println(deck);
         System.out.println("Deck size: " + deck.size());
     }
+    
+    public void drawCards() {
+
+        // draw cards for the player
+        playerHand = new ArrayList<Card>();
+        Card drawnCard1 = deck.remove(0);
+        playerHand.add(drawnCard1);
+        playerHandValue += drawnCard1.getValue();
+        Card drawnCard2 = deck.remove(1);
+        playerHand.add(drawnCard2);
+        playerHandValue += drawnCard2.getValue();
+        System.out.println("=============================");
+        System.out.println("Drawing cards: ");
+        System.out.println("Deck: " + deck);
+        System.out.println("Deck size: " + deck.size());
+        System.out.println("Player hand: " + playerHand);
+        System.out.println("Player hand value: " + playerHandValue);
+
+    }
+
 }
