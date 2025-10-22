@@ -6,11 +6,47 @@ import javax.swing.*; //swing do tworzenia GUI
 
 public class Blackjack {
 
+    private class Card {
+        
+        String value;
+        String type;
+
+        Card(String value, String type){
+            this.type = type;
+            this.value = value;
+        }
+
+        public String toString() {
+            return value + "-" + type;
+        }
+    }
+
+    ArrayList<Card> deck;
+
     JFrame frame = new JFrame("Blackjack Game");
 
     Blackjack() {
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(800, 600);
-        frame.setVisible(true);
+
+        buildDeck();
+
+
+    }
+
+    public void buildDeck() {
+
+        deck = new ArrayList<Card>();
+        String[] types = {"H", "D", "C", "S"};
+        String[] values = {"2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A"};
+
+        for (String type : types) {
+            for (String value : values) {
+                deck.add(new Card(value, type));
+            }
+        }
+
+        System.out.println("============================="); 
+        System.out.println("Building Deck: "); 
+        System.out.println(deck);
+        System.out.println("Deck size: " + deck.size());
     }
 }
