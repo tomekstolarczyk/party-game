@@ -21,13 +21,38 @@ public class Blackjack {
         }
     }
 
+    int cardWidth = 110;
+    int cardHeight = 154;
+    Image hiddenCardImage;
     ArrayList<Card> deck;
     JFrame frame = new JFrame("Blackjack Game");
+
+    JPanel panel = new JPanel() {
+        @Override
+        protected void paintComponent(Graphics g) {
+            super.paintComponent(g);
+            // tutaj rysowanie komponentów gry
+
+            //draw hidden card
+            g.drawImage(hiddenCardImage, 20, 20, cardWidth, cardHeight, null);
+        }
+    };
 
     Blackjack() {
 
         buildDeck();
         shuffleDeck();
+
+        hiddenCardImage = new ImageIcon(getClass().getResource("./cards/BACK.png")).getImage();
+
+        frame.setVisible(true);
+        frame.setSize(800, 600);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        panel.setLayout(new BorderLayout());
+        panel.setBackground(new Color(53,101,77));
+        frame.add(panel);
+
+
 
     }
 
