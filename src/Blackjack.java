@@ -38,6 +38,7 @@ public class Blackjack {
     ArrayList<Card> deck;
     ArrayList<Card> dealerHand;
     int dealerHandValue = 0;
+    Card card;
 
     JFrame frame = new JFrame("Blackjack Game");
 
@@ -53,6 +54,19 @@ public class Blackjack {
 
             //draw hidden card
             g.drawImage(hiddenCardImage, 20, 20, cardWidth, cardHeight, null);
+
+            for (int i = 0; i < dealerHand.size()-1; i++) {
+                card = dealerHand.get(i+1);
+                Image cardImage = new ImageIcon(getClass().getResource("./cards/" + card.toString() + ".png")).getImage();
+                g.drawImage(cardImage, cardWidth + 25 + (cardWidth + 5) * i, 20, cardWidth, cardHeight, null);
+
+            }
+
+            for (int i = 0; i < playerHand.size(); i++) {
+                card = playerHand.get(i);
+                Image cardImage = new ImageIcon(getClass().getResource("./cards/" + card.toString() + ".png")).getImage();
+                g.drawImage(cardImage, 20 + (cardWidth + 5) * i, 320, cardWidth, cardHeight, null);
+            }
         }
     };
 
@@ -60,7 +74,7 @@ public class Blackjack {
 
         buildDeck();
         shuffleDeck();
-        drawCards();
+        drawCardsatTheStart();
 
         hiddenCardImage = new ImageIcon(getClass().getResource("./cards/BACK.png")).getImage();
 
@@ -107,7 +121,7 @@ public class Blackjack {
         System.out.println("Deck size: " + deck.size());
     }
     
-    public void drawCards() {
+    public void drawCardsatTheStart() {
 
         // draw cards for the player
         playerHand = new ArrayList<Card>();
