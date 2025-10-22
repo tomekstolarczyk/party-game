@@ -22,13 +22,12 @@ public class Blackjack {
     }
 
     ArrayList<Card> deck;
-
     JFrame frame = new JFrame("Blackjack Game");
 
     Blackjack() {
 
         buildDeck();
-
+        shuffleDeck();
 
     }
 
@@ -46,6 +45,22 @@ public class Blackjack {
 
         System.out.println("============================="); 
         System.out.println("Building Deck: "); 
+        System.out.println(deck);
+        System.out.println("Deck size: " + deck.size());
+    }
+
+    public void shuffleDeck() {
+
+        for (int i = 0; i < deck.size(); i++) {
+            Random rand = new Random();
+            int randomIndex = rand.nextInt(deck.size());
+            Card temp = deck.get(i);
+            deck.set(i, deck.get(randomIndex));
+            deck.set(randomIndex, temp);
+        }
+
+        System.out.println("=============================");
+        System.out.println("Shuffling Deck: ");
         System.out.println(deck);
         System.out.println("Deck size: " + deck.size());
     }
